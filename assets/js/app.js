@@ -15,4 +15,7 @@ if (navigator.geolocation) {
 function getCurrentCityLocation(position) {
     const lat = position.coords.latitude;
     const long = position.coords.longitude;
+    fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguage=en`)
+        .then(response => response.json())
+        .then(data => getWeatherDataByCityName(data.city));
 }
