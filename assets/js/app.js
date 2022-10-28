@@ -6,4 +6,13 @@ const getWeatherDataByCityName = async(city) => {
     console.log(data);
 }
 
-getWeatherDataByCityName('dhaka');
+
+//Check if browser supports W3C Geolocation API
+if (navigator.geolocation) {
+}    navigator.geolocation.getCurrentPosition(getCurrentCityLocation);
+
+//Get latitude and longitude;
+function getCurrentCityLocation(position) {
+    const lat = position.coords.latitude;
+    const long = position.coords.longitude;
+}
