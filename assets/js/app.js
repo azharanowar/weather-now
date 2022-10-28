@@ -1,21 +1,22 @@
-const getWeatherDataByCityName = async(city) => {
+const getWeatherDataByLatLong = async(lat, long) => {
     const API_KEY = "307ad431ef6ffcbfdcde7dc07a3eca51";
-    const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+    const API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}`;
     const response = await fetch(API_URL);
     const data = await response.json();
-    console.log(data);
+    displayWeatherData(data);
 }
 
+const displayWeatherData = weatherData => {
+    console.log(weatherData)
+}
 
 //Check if browser supports W3C Geolocation API
 if (navigator.geolocation) {
-}    navigator.geolocation.getCurrentPosition(getCurrentCityLocation);
+}    navigator.geolocation.getCurrentPosition(getCurrentLocationLatLong);
 
 //Get latitude and longitude;
-function getCurrentCityLocation(position) {
+function getCurrentLocationLatLong(position) {
     const lat = position.coords.latitude;
     const long = position.coords.longitude;
-    fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguage=en`)
-        .then(response => response.json())
-        .then(data => getWeatherDataByCityName(data.city));
+    getWeatherDataByLatLong(lat, long)
 }
