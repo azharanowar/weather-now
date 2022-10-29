@@ -16,12 +16,16 @@ const displayWeatherData = weatherData => {
     document.getElementById("displayTemperature").innerHTML = temperature;
     document.getElementById("displayWeather").innerHTML = weather;
     document.getElementById("displayWeatherIcon").src = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+
+    document.getElementById("preloaderSection").style.display = "none";
 }
 
 document.getElementById("searchBtn").addEventListener('click', () => {
     const searchInputField = document.getElementById("searchInputField");
     if (searchInputField.value) {
         getWeatherDataByCityName(searchInputField.value);
+
+        document.getElementById("preloaderSection").style.display = "block";
     }
     searchInputField.value = '';
 });

@@ -9,3 +9,11 @@ body {
     background-size: cover;
     height: 100vh;
 }
+
+.preloader-img {
+    width: 40px;
+}
+
+#preloaderSection {
+    display: none;
+}
